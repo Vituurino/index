@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Câmera</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        video {
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ativando sua câmera 📷</h1>
+    <video id="video" autoplay></video>
+
+    <script>
+        async function iniciarCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'user' } // 'user' para câmera frontal
+                });
+                document.getElementById('video').srcObject = stream;
+            } catch (error) {
+                alert('Erro ao acessar a câmera: ' + error);
+            }
+        }
+
+        iniciarCamera();
+    </script>
+
+</body>
+</html>
